@@ -28,18 +28,18 @@ This package provides a general interface for creating ApiProblem value objects.
 use Phpro\ApiProblem\Exception;
 
 throw new ApiProblemException(
-    new HttpApiProblem(418, ['detail' => 'Did you know 4,000 people are injured by teapots every year?!')
+    new HttpApiProblem(418, ['detail' => 'Did you know 4,000 people are injured by teapots every year?!'])
 );
 ```
 
 ### Built-in problems
 
-- [ExceptionApiProblem](#exception-api-problem)
-- [ForbiddenProblem](#forbidden-problem)
-- [HttpApiProblem](#http-api-problem)
-- [NotFoundProblem](#not-found-problem)
-- [UnauthorizedProblem](#unauthorized-problem)
-- [ValidationApiProblem](#validation-api-problem)
+- [ExceptionApiProblem](#exceptionapiproblem)
+- [ForbiddenProblem](#forbiddenproblem)
+- [HttpApiProblem](#httpapiproblem)
+- [NotFoundProblem](#notfoundproblem)
+- [UnauthorizedProblem](#unauthorizedproblem)
+- [ValidationApiProblem](#validationapiproblem)
 
 #### ExceptionApiProblem
 
@@ -48,7 +48,7 @@ throw new ApiProblemException(
 ```php
 use Phpro\ApiProblem\Http\ExceptionApiProblem;
 
-new ExceptionApiProblem(new \Exception('message', 500)
+new ExceptionApiProblem(new \Exception('message', 500));
 ```
 
 ```json
@@ -77,7 +77,7 @@ new ExceptionApiProblem(new \Exception('message', 500)
 ```php
 use Phpro\ApiProblem\Http\ForbiddenProblem;
 
-new ForbiddenProblem('Not authorized to access gold.')
+new ForbiddenProblem('Not authorized to access gold.');
 ```
 
 ```json
@@ -94,7 +94,7 @@ new ForbiddenProblem('Not authorized to access gold.')
 ```php
 use Phpro\ApiProblem\Http\HttpApiProblem;
 
-new HttpApiProblem(404, ['detail' => 'The book could not be found.'])
+new HttpApiProblem(404, ['detail' => 'The book could not be found.']);
 ```
 
 ```json
@@ -111,7 +111,7 @@ new HttpApiProblem(404, ['detail' => 'The book could not be found.'])
 ```php
 use Phpro\ApiProblem\Http\NotFoundProblem;
 
-new NotFoundProblem('The book with ID 20 could not be found.')
+new NotFoundProblem('The book with ID 20 could not be found.');
 ```
 
 ```json
@@ -128,7 +128,7 @@ new NotFoundProblem('The book with ID 20 could not be found.')
 ```php
 use Phpro\ApiProblem\Http\UnauthorizedProblem;
 
-new UnauthorizedProblem('You are not authorized to access X.')
+new UnauthorizedProblem('You are not authorized to access X.');
 ```
 
 ```json
@@ -142,7 +142,7 @@ new UnauthorizedProblem('You are not authorized to access X.')
 
 #### ValidationApiProblem
 
-```
+```sh
 composer require symfony/validator:^4.1
 ```
 
@@ -153,7 +153,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 
 new ValidationApiProblem(new ConstraintViolationList([
     new ConstraintViolation('Invalid email', '', [], '', 'email', '', null, '8615ecd9-afcb-479a-9c78-8bcfe260cf2a'),
-]))
+]));
 ```
 
 ```json
@@ -188,13 +188,13 @@ class MyProblem implements ApiProbelmInterface
         return [
             'type' => 'about:blank',
             'status' => '99',
-            'title' => 'Got 99 problems but a glitch aint one!'
+            'title' => 'Got 99 problems but a glitch aint one!',
         ];
     }
 }
 ```
 
-Since a lot of problems will detect problems in an HTTP context, we also provided a base `HttpApiProblem` class.
+A lot of problems will be detected in an HTTP context. Therefore, we also provided a base `HttpApiProblem` class.
 This one will automatically fill in the type and title section based on the HTTP code.
 The only thing you'll need to do, is add some additional data to it:
 
@@ -203,9 +203,9 @@ use Phpro\ApiProblem\Http\HttpApiProblem;
 
 class MyProblem extends HttpApiProblem
 {
-    public function __construc(string $details)
+    public function __construct(string $details)
     {
-        return parent::__construct(500, ['details' => $details]);
+        parent::__construct(500, ['details' => $details]);
     }
 }
 ```
@@ -222,7 +222,7 @@ class MyProblem implements DebuggableApiProblemInterface
         return [
             'type' => 'about:blank',
             'status' => '99',
-            'title' => 'Got 99 problems but a glitch aint one!'
+            'title' => 'Got 99 problems but a glitch aint one!',
         ];
     }
 
@@ -231,7 +231,7 @@ class MyProblem implements DebuggableApiProblemInterface
         return array_merge(
             $this->toArray(),
             [
-                'situation' => 'If you are having code problems, I feel bad for you son'
+                'situation' => 'If you are having code problems, I feel bad for you son',
             ]
         );
     }
