@@ -65,7 +65,7 @@ new ExceptionApiProblem(new \Exception('message', 500));
       {
         "message": "previous",
         "code": 0,
-        "trace": "#0 [internal function]: ...",
+        "trace": "#0 [internal function]: ..."
       }
     ]
   }
