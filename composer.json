@@ -7,7 +7,7 @@
         "phpro/grumphp": "^0.14.1",
         "phpspec/phpspec": "^4.3",
         "symfony/validator": "^4.1",
-        "sebastian/comparator": "^3.0"
+        "sebastian/comparator": "^1.2.4"
     },
     "license": "MIT",
     "authors": [
