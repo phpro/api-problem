@@ -1,0 +1,11 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+      phpcsfixer2:
+        config: ".php_cs.dist"
+        config_contains_finder: true
+      phpspec:
+        format: dot
+      composer:
+        no_check_lock: true
