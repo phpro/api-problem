@@ -17,8 +17,9 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
     public function __construct(Throwable $exception)
     {
         $this->exception = $exception;
-        $statusCode = $exception->getCode() >= 400 && $exception->getCode() <= 599
-            ? $exception->getCode()
+        $exceptionCode = $exception->getCode();
+        $statusCode = $exceptionCode >= 400 && $exceptionCode <= 599
+            ? $exceptionCode
             : 500;
 
         parent::__construct($statusCode, [
@@ -47,7 +48,7 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
         );
     }
 
-    private function serializeException(Throwable $throwable)
+    private function serializeException(Throwable $throwable): array
     {
         return [
             'message' => $throwable->getMessage(),
