@@ -6,7 +6,8 @@
         "friendsofphp/php-cs-fixer": "^2.12",
         "phpro/grumphp": "^0.14.1",
         "phpspec/phpspec": "^4.3",
-        "symfony/validator": "^4.1"
+        "symfony/validator": "^4.1",
+        "sebastian/comparator": "^3.0"
     },
     "license": "MIT",
     "authors": [
