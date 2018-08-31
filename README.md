@@ -17,7 +17,7 @@ Since handling the exceptions is up to the framework, here is a list of known fr
 ## Installation
 
 ```sh
-composer require --dev phpro/api-problem
+composer require phpro/api-problem
 ```
 
 ## Usage

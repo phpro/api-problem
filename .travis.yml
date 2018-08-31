@@ -1,13 +1,12 @@
 language: php
 
-php:
-  - 7.2
-  - nightly
-
 env:
-  matrix:
-    -
-    - DEPENDENCIES=--prefer-lowest
+    global:
+        - DEFAULT_COMPOSER_FLAGS="--optimize-autoloader --no-interaction --no-progress"
+        - COMPOSER_FLAGS=""
+
+before_install:
+    - alias composer=composer\ --no-interaction && composer selfupdate
 
 cache:
   directories:
@@ -18,11 +17,28 @@ matrix:
   allow_failures:
     - php: nightly
 
-before_install:
-  - alias composer=composer\ --no-interaction && composer selfupdate
+jobs:
+    include:
+        - &STANDARD_TEST_JOB
+            stage: Test
+            php: 7.2
+            install:
+                - travis_retry composer update $DEFAULT_COMPOSER_FLAGS $COMPOSER_FLAGS
+                - composer info -D | sort
+            script:
+                - vendor/bin/grumphp run
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: 7.2
+            env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: nightly
+            env: COMPOSER_FLAGS="--ignore-platform-reqs" PHP_CS_FIXER_IGNORE_ENV=1 PHP_CS_FIXER_FUTURE_MODE=1
+            script:
+                - vendor/bin/grumphp run
 
-install:
-  - travis_retry composer update --no-progress --profile --no-scripts --no-suggest $DEPENDENCIES
-
-script:
-   - vendor/bin/grumphp run
+    allow_failures:
+        - php: nightly
