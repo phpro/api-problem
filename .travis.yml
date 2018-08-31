@@ -36,9 +36,9 @@ jobs:
             <<: *STANDARD_TEST_JOB
             stage: Test
             php: nightly
-            env: COMPOSER_FLAGS="--ignore-platform-reqs"
+            env: COMPOSER_FLAGS="--ignore-platform-reqs" PHP_CS_FIXER_IGNORE_ENV=1 PHP_CS_FIXER_FUTURE_MODE=1
             script:
-                - PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/grumphp run
+                - vendor/bin/grumphp run
 
     allow_failures:
         - php: nightly
