@@ -37,6 +37,8 @@ jobs:
             stage: Test
             php: nightly
             env: COMPOSER_FLAGS="--ignore-platform-reqs"
+            script:
+                - PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/grumphp run
 
     allow_failures:
         - php: nightly

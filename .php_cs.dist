@@ -15,7 +15,7 @@ return PhpCsFixer\Config::create()
         'array_indentation' => true,
         'array_syntax' => ['syntax' => 'short'],
         'backtick_to_shell_exec' => true,
-        'blank_line_before_return' => true,
+        'blank_line_before_statement' => true,
         'class_keyword_remove' => false,
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
