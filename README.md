@@ -11,7 +11,7 @@ It can be integrated everywhere in your code and should result in a general erro
 This package only provides a generic interface, an exception class and some built-in api problem messages.
 Since handling the exceptions is up to the framework, here is a list of known framework integrations:
 
-- **Symfony** `^4.1`: [ApiProblemBundle](https://www.github.com.phpro/api-problem-bundle)
+- **Symfony** `^4.1`: [ApiProblemBundle](https://www.github.com/phpro/api-problem-bundle)
 
 
 ## Installation
