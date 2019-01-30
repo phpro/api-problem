@@ -65,8 +65,11 @@ class ExceptionApiProblemSpec extends ObjectBehavior
             'title' => HttpApiProblem::getTitleForStatusCode(500),
             'detail' => 'message',
             'exception' => [
+                'type' => Exception::class,
                 'message' => 'message',
                 'code' => 500,
+                'line' => $exception->getLine(),
+                'file' => $exception->getFile(),
                 'trace' => $exception->getTraceAsString(),
                 'previous' => [],
             ],
@@ -86,22 +89,44 @@ class ExceptionApiProblemSpec extends ObjectBehavior
             'title' => HttpApiProblem::getTitleForStatusCode(500),
             'detail' => 'message',
             'exception' => [
+                'type' => Exception::class,
                 'message' => 'message',
                 'code' => 0,
+                'line' => $exception->getLine(),
+                'file' => $exception->getFile(),
                 'trace' => $exception->getTraceAsString(),
                 'previous' => [
                     [
+                        'type' => Exception::class,
                         'message' => 'previous',
                         'code' => 2,
+                        'line' => $previous->getLine(),
+                        'file' => $previous->getFile(),
                         'trace' => $previous->getTraceAsString(),
                     ],
                     [
+                        'type' => Exception::class,
                         'message' => 'first',
                         'code' => 1,
+                        'line' => $first->getLine(),
+                        'file' => $first->getFile(),
                         'trace' => $first->getTraceAsString(),
                     ],
                 ],
             ],
+        ]);
+    }
+
+    public function it_uses_the_class_of_the_exception_when_no_message_exists(): void
+    {
+        $exception = new Exception();
+        $this->beConstructedWith($exception);
+
+        $this->toArray()->shouldBe([
+            'status' => 500,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(500),
+            'detail' => Exception::class,
         ]);
     }
 }
