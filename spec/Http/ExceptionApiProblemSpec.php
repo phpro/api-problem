@@ -70,7 +70,7 @@ class ExceptionApiProblemSpec extends ObjectBehavior
                 'code' => 500,
                 'line' => $exception->getLine(),
                 'file' => $exception->getFile(),
-                'trace' => $exception->getTraceAsString(),
+                'trace' => explode("\n", $exception->getTraceAsString()),
                 'previous' => [],
             ],
         ]);
@@ -94,7 +94,7 @@ class ExceptionApiProblemSpec extends ObjectBehavior
                 'code' => 0,
                 'line' => $exception->getLine(),
                 'file' => $exception->getFile(),
-                'trace' => $exception->getTraceAsString(),
+                'trace' => explode("\n", $exception->getTraceAsString()),
                 'previous' => [
                     [
                         'type' => Exception::class,
@@ -102,7 +102,7 @@ class ExceptionApiProblemSpec extends ObjectBehavior
                         'code' => 2,
                         'line' => $previous->getLine(),
                         'file' => $previous->getFile(),
-                        'trace' => $previous->getTraceAsString(),
+                        'trace' => explode("\n", $previous->getTraceAsString()),
                     ],
                     [
                         'type' => Exception::class,
@@ -110,7 +110,7 @@ class ExceptionApiProblemSpec extends ObjectBehavior
                         'code' => 1,
                         'line' => $first->getLine(),
                         'file' => $first->getFile(),
-                        'trace' => $first->getTraceAsString(),
+                        'trace' => explode("\n", $first->getTraceAsString()),
                     ],
                 ],
             ],
