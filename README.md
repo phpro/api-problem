@@ -59,12 +59,18 @@ new ExceptionApiProblem(new \Exception('message', 500));
   "detail": "message",
   "exception": {
     "message": "message",
+    "type": "RuntimeException",
     "code": 500,
+    "line": 23,
+    "file": "exception.php",
     "trace": "#0 [internal function]: ...",
     "previous": [
       {
         "message": "previous",
+        "type": "InvalidArgumentException",
         "code": 0,
+        "line": 20,
+        "file": "exception.php",
         "trace": "#0 [internal function]: ..."
       }
     ]

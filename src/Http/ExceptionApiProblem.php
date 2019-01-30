@@ -23,7 +23,7 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
             : 500;
 
         parent::__construct($statusCode, [
-            'detail' => $exception->getMessage(),
+            'detail' => $exception->getMessage() ?: \get_class($exception),
         ]);
     }
 
@@ -51,8 +51,11 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
     private function serializeException(Throwable $throwable): array
     {
         return [
+            'type' => \get_class($throwable),
             'message' => $throwable->getMessage(),
             'code' => $throwable->getCode(),
+            'line' => $throwable->getLine(),
+            'file' => $throwable->getFile(),
             'trace' => $throwable->getTraceAsString(),
         ];
     }
