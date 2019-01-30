@@ -56,7 +56,7 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
             'code' => $throwable->getCode(),
             'line' => $throwable->getLine(),
             'file' => $throwable->getFile(),
-            'trace' => $throwable->getTraceAsString(),
+            'trace' => explode("\n", $throwable->getTraceAsString()),
         ];
     }
 }
