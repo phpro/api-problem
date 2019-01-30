@@ -63,7 +63,12 @@ new ExceptionApiProblem(new \Exception('message', 500));
     "code": 500,
     "line": 23,
     "file": "exception.php",
-    "trace": "#0 [internal function]: ...",
+    "trace": [
+         "#0 [internal function]: ...",
+         "#1 [internal function]: ...",
+         "#3 [internal function]: ...",
+         "..."
+    ],
     "previous": [
       {
         "message": "previous",
@@ -71,7 +76,12 @@ new ExceptionApiProblem(new \Exception('message', 500));
         "code": 0,
         "line": 20,
         "file": "exception.php",
-        "trace": "#0 [internal function]: ..."
+        "trace": [
+            "#0 [internal function]: ...",
+            "#1 [internal function]: ...",
+            "#3 [internal function]: ...",
+            "..."
+        ]
       }
     ]
   }
