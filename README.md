@@ -40,6 +40,7 @@ throw new ApiProblemException(
 - [NotFoundProblem](#notfoundproblem)
 - [UnauthorizedProblem](#unauthorizedproblem)
 - [ValidationApiProblem](#validationapiproblem)
+- [BadRequestProblem](#badrequestproblem)
 
 #### ExceptionApiProblem
 
@@ -188,10 +189,27 @@ new ValidationApiProblem(new ConstraintViolationList([
 }
 ````
 
+#### BadRequestProblem
+
+```php
+use Phpro\ApiProblem\Http\BadRequestProblem;
+
+new BadRequestProblem('Bad request. Bad!.');
+```
+
+```json
+{
+    "status": 400,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Bad Request",
+    "detail": "Bad request. Bad!"
+}
+````
+
 
 ### Creating your own problem
 
-Creating problem sounds scarry right!?
+Creating problem sounds scary right!?
 Since the RFC is very loose, we made the interface as easy as possible:
 
 ```php
@@ -238,7 +256,7 @@ class MyProblem implements DebuggableApiProblemInterface
         return [
             'type' => 'about:blank',
             'status' => '99',
-            'title' => 'Got 99 problems but a glitch aint one!',
+            'title' => 'Got 99 problems but a glitch ain\'t one!',
         ];
     }
 
