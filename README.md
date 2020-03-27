@@ -42,6 +42,16 @@ throw new ApiProblemException(
 - [ValidationApiProblem](#validationapiproblem)
 - [BadRequestProblem](#badrequestproblem)
 - [ConflictProblem](#conflictproblem)
+- [NotModifiedProblem](#notmodifiedproblem)
+- [MethodNotAllowedProblem](#methodnotallowedproblem)
+- [PreconditionFailedProblem](#preconditionfailedproblem)
+- [UnsupportedMediaTypeProblem](#unsupportedmediatypeproblem)
+- [IAmATeapotProblem](#iamateapotproblem)
+- [UnprocessableEntityProblem](#unprocessableentityproblem)
+- [LockedProblem](#lockedproblem)
+- [FailedDependencyProblem](#faileddependencyproblem)
+- [PreconditionRequiredProblem](#preconditionrequiredproblem)
+- [InternalServerErrorProblem](#internalservererrorproblem)
 
 #### ExceptionApiProblem
 
@@ -220,6 +230,176 @@ new ConflictProblem('Duplicated key for book with ID 20.');
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
     "title": "Conflict",
     "detail": "Duplicated key for book with ID 20."
+}
+````
+
+#### NotModifiedProblem
+
+```php
+use Phpro\ApiProblem\Http\NotModifiedProblem;
+
+new NotModifiedProblem('Nothing has changed!.');
+```
+
+```json
+{
+    "status": 304,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Not Modified",
+    "detail": "Nothing has changed!"
+}
+````
+
+#### MethodNotAllowedProblem
+
+```php
+use Phpro\ApiProblem\Http\MethodNotAllowedProblem;
+
+new MethodNotAllowedProblem('Only POST and GET allowed.');
+```
+
+```json
+{
+    "status": 405,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Method Not Allowed",
+    "detail": "Only POST and GET allowed."
+}
+````
+
+#### PreconditionFailedProblem
+
+```php
+use Phpro\ApiProblem\Http\PreconditionFailedProblem;
+
+new PreconditionFailedProblem('Incorrect entity tag provided.');
+```
+
+```json
+{
+    "status": 412,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Precondition Failed",
+    "detail": "Incorrect entity tag provided."
+}
+````
+
+#### UnsupportedMediaTypeProblem
+
+```php
+use Phpro\ApiProblem\Http\UnsupportedMediaTypeProblem;
+
+new UnsupportedMediaTypeProblem('Please provide valid JSON.');
+```
+
+```json
+{
+    "status": 415,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Unsupported Media Type",
+    "detail": "Please provide valid JSON."
+}
+````
+
+#### IAmATeapotProblem
+
+```php
+use Phpro\ApiProblem\Http\IAmATeapotProblem;
+
+new IAmATeapotProblem('More tea please.');
+```
+
+```json
+{
+    "status": 418,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "I'm a teapot",
+    "detail": "More tea please."
+}
+````
+
+#### UnprocessableEntityProblem
+
+```php
+use Phpro\ApiProblem\Http\UnprocessableEntityProblem;
+
+new UnprocessableEntityProblem('Unable to process the contained instructions.');
+```
+
+```json
+{
+    "status": 422,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Unprocessable Entity",
+    "detail": "Unable to process the contained instructions."
+}
+````
+
+#### LockedProblem
+
+```php
+use Phpro\ApiProblem\Http\LockedProblem;
+
+new LockedProblem('This door is locked.');
+```
+
+```json
+{
+    "status": 423,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Locked",
+    "detail": "This door is locked."
+}
+````
+
+#### FailedDependencyProblem
+
+```php
+use Phpro\ApiProblem\Http\FailedDependencyProblem;
+
+new FailedDependencyProblem('Could not connect to the order microservice.');
+```
+
+```json
+{
+    "status": 424,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Failed Dependency",
+    "detail": "Could not connect to the order microservice."
+}
+````
+
+#### PreconditionRequiredProblem
+
+```php
+use Phpro\ApiProblem\Http\PreconditionRequiredProblem;
+
+new PreconditionRequiredProblem('If-match header is required.');
+```
+
+```json
+{
+    "status": 428,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Precondition Required",
+    "detail": "If-match header is required."
+}
+````
+
+#### InternalServerErrorProblem
+
+```php
+use Phpro\ApiProblem\Http\InternalServerErrorProblem;
+
+new InternalServerErrorProblem('There is something wrong at our side.');
+```
+
+```json
+{
+    "status": 500,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Internal Server Error",
+    "detail": "There is something wrong at our side."
 }
 ````
 
