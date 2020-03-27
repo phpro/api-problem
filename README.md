@@ -194,7 +194,7 @@ new ValidationApiProblem(new ConstraintViolationList([
 ```php
 use Phpro\ApiProblem\Http\BadRequestProblem;
 
-new BadRequestProblem('You are not authorized to access X.');
+new BadRequestProblem('Bad request. Bad!.');
 ```
 
 ```json
