@@ -231,7 +231,7 @@ Since the RFC is very loose, we made the interface as easy as possible:
 ```php
 use Phpro\ApiProblem\ApiProblemInterface;
 
-class MyProblem implements ApiProbelmInterface
+class MyProblem implements ApiProblemInterface
 {
     public function toArray(): array
     {
