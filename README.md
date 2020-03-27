@@ -41,6 +41,7 @@ throw new ApiProblemException(
 - [UnauthorizedProblem](#unauthorizedproblem)
 - [ValidationApiProblem](#validationapiproblem)
 - [BadRequestProblem](#badrequestproblem)
+- [ConflictProblem](#conflictproblem)
 
 #### ExceptionApiProblem
 
@@ -206,6 +207,21 @@ new BadRequestProblem('Bad request. Bad!.');
 }
 ````
 
+#### ConflictProblem
+
+```php
+use Phpro\ApiProblem\Http\ConflictProblem;
+new ConflictProblem('Duplicated key for book with ID 20.');
+```
+
+```json
+{
+    "status": 409,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Conflict",
+    "detail": "Duplicated key for book with ID 20."
+}
+````
 
 ### Creating your own problem
 
