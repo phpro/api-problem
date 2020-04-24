@@ -34,4 +34,32 @@ class MethodNotAllowedProblemSpec extends ObjectBehavior
             'detail' => 'method not allowed',
         ]);
     }
+
+    public function it_should_be_an_allowed_method_with_multiple_methods(): void
+    {
+        $allowedMethods = ['POST', 'GET'];
+        $currentMethod = 'OPTIONS';
+
+        $this->beConstructedThrough('invalidMethod', [$allowedMethods, $currentMethod]);
+        $this->toArray()->shouldBe([
+            'status' => 405,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(405),
+            'detail' => 'OPTIONS not allowed. Should be: POST or GET',
+        ]);
+    }
+
+    public function it_should_be_an_allowed_method_with_a_single_methods(): void
+    {
+        $allowedMethods = ['POST'];
+        $currentMethod = 'OPTIONS';
+
+        $this->beConstructedThrough('invalidMethod', [$allowedMethods, $currentMethod]);
+        $this->toArray()->shouldBe([
+            'status' => 405,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(405),
+            'detail' => 'OPTIONS not allowed. Should be: POST',
+        ]);
+    }
 }

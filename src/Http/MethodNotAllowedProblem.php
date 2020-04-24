@@ -12,4 +12,12 @@ class MethodNotAllowedProblem extends HttpApiProblem
             'detail' => $detail,
         ]);
     }
+
+    public static function invalidMethod(array $allowMethods, string $currentMethod): self
+    {
+        $allowMethods[] = implode(' or ', array_splice($allowMethods, -2));
+        $detail = $currentMethod.' not allowed. Should be: '.implode(', ', $allowMethods);
+
+        return new self($detail);
+    }
 }
