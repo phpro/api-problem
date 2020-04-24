@@ -49,7 +49,6 @@ throw new ApiProblemException(
 - [IAmATeapotProblem](#iamateapotproblem)
 - [UnprocessableEntityProblem](#unprocessableentityproblem)
 - [LockedProblem](#lockedproblem)
-- [FailedDependencyProblem](#faileddependencyproblem)
 - [PreconditionRequiredProblem](#preconditionrequiredproblem)
 - [InternalServerErrorProblem](#internalservererrorproblem)
 
@@ -349,23 +348,6 @@ new LockedProblem('This door is locked.');
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
     "title": "Locked",
     "detail": "This door is locked."
-}
-````
-
-#### FailedDependencyProblem
-
-```php
-use Phpro\ApiProblem\Http\FailedDependencyProblem;
-
-new FailedDependencyProblem('Could not connect to the order microservice.');
-```
-
-```json
-{
-    "status": 424,
-    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-    "title": "Failed Dependency",
-    "detail": "Could not connect to the order microservice."
 }
 ````
 
