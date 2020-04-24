@@ -50,7 +50,6 @@ throw new ApiProblemException(
 - [UnprocessableEntityProblem](#unprocessableentityproblem)
 - [LockedProblem](#lockedproblem)
 - [PreconditionRequiredProblem](#preconditionrequiredproblem)
-- [InternalServerErrorProblem](#internalservererrorproblem)
 
 #### ExceptionApiProblem
 
@@ -365,23 +364,6 @@ new PreconditionRequiredProblem('If-match header is required.');
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
     "title": "Precondition Required",
     "detail": "If-match header is required."
-}
-````
-
-#### InternalServerErrorProblem
-
-```php
-use Phpro\ApiProblem\Http\InternalServerErrorProblem;
-
-new InternalServerErrorProblem('There is something wrong at our side.');
-```
-
-```json
-{
-    "status": 500,
-    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-    "title": "Internal Server Error",
-    "detail": "There is something wrong at our side."
 }
 ````
 
