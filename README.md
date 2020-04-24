@@ -2,7 +2,6 @@
 [![Installs](https://img.shields.io/packagist/dt/phpro/api-problem.svg)](https://packagist.org/packages/phpro/api-problem/stats)
 [![Packagist](https://img.shields.io/packagist/v/phpro/api-problem.svg)](https://packagist.org/packages/phpro/api-problem)
 
-
 # Api Problem
 
 This package provides a [RFC7807](https://tools.ietf.org/html/rfc7807) Problem details implementation.
@@ -12,7 +11,6 @@ This package only provides a generic interface, an exception class and some buil
 Since handling the exceptions is up to the framework, here is a list of known framework integrations:
 
 - **Symfony** `^4.1`: [ApiProblemBundle](https://www.github.com/phpro/api-problem-bundle)
-
 
 ## Installation
 
@@ -34,22 +32,26 @@ throw new ApiProblemException(
 
 ### Built-in problems
 
-- [ExceptionApiProblem](#exceptionapiproblem)
-- [ForbiddenProblem](#forbiddenproblem)
-- [HttpApiProblem](#httpapiproblem)
-- [NotFoundProblem](#notfoundproblem)
-- [UnauthorizedProblem](#unauthorizedproblem)
-- [ValidationApiProblem](#validationapiproblem)
-- [BadRequestProblem](#badrequestproblem)
-- [ConflictProblem](#conflictproblem)
-- [NotModifiedProblem](#notmodifiedproblem)
-- [MethodNotAllowedProblem](#methodnotallowedproblem)
-- [PreconditionFailedProblem](#preconditionfailedproblem)
-- [UnsupportedMediaTypeProblem](#unsupportedmediatypeproblem)
-- [IAmATeapotProblem](#iamateapotproblem)
-- [UnprocessableEntityProblem](#unprocessableentityproblem)
-- [LockedProblem](#lockedproblem)
-- [PreconditionRequiredProblem](#preconditionrequiredproblem)
+- General problems
+  - [ExceptionApiProblem](#exceptionapiproblem)
+  - [HttpApiProblem](#httpapiproblem)
+
+- Symfony integration problems
+  - [ValidationApiProblem](#validationapiproblem)
+
+- Http problems
+  - 400 [BadRequestProblem](#badrequestproblem)
+  - 401 [UnauthorizedProblem](#unauthorizedproblem)
+  - 403 [ForbiddenProblem](#forbiddenproblem)
+  - 404 [NotFoundProblem](#notfoundproblem)
+  - 405 [MethodNotAllowedProblem](#methodnotallowedproblem)
+  - 409 [ConflictProblem](#conflictproblem)
+  - 412 [PreconditionFailedProblem](#preconditionfailedproblem)
+  - 415 [UnsupportedMediaTypeProblem](#unsupportedmediatypeproblem)
+  - 418 [IAmATeapotProblem](#iamateapotproblem)
+  - 422 [UnprocessableEntityProblem](#unprocessableentityproblem)
+  - 423 [LockedProblem](#lockedproblem)
+  - 428 [PreconditionRequiredProblem](#preconditionrequiredproblem)
 
 #### ExceptionApiProblem
 
@@ -98,23 +100,6 @@ new ExceptionApiProblem(new \Exception('message', 500));
 }
 ````
 
-#### ForbiddenProblem
-
-```php
-use Phpro\ApiProblem\Http\ForbiddenProblem;
-
-new ForbiddenProblem('Not authorized to access gold.');
-```
-
-```json
-{
-  "status": 403,
-  "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-  "title": "Forbidden",
-  "detail": "Not authorized to access gold."
-}
-````
-
 #### HttpApiProblem
 
 ```php
@@ -129,40 +114,6 @@ new HttpApiProblem(404, ['detail' => 'The book could not be found.']);
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
     "title": "Not found",
     "detail": "The book could not be found."
-}
-````
-
-#### NotFoundProblem
-
-```php
-use Phpro\ApiProblem\Http\NotFoundProblem;
-
-new NotFoundProblem('The book with ID 20 could not be found.');
-```
-
-```json
-{
-    "status": 404,
-    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-    "title": "Not found",
-    "detail": "The book with ID 20 could not be found."
-}
-````
-
-#### UnauthorizedProblem
-
-```php
-use Phpro\ApiProblem\Http\UnauthorizedProblem;
-
-new UnauthorizedProblem('You are not authorized to access X.');
-```
-
-```json
-{
-    "status": 401,
-    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-    "title": "Unauthorized",
-    "detail": "You are not authenticated. Please login."
 }
 ````
 
@@ -215,36 +166,54 @@ new BadRequestProblem('Bad request. Bad!.');
 }
 ````
 
-#### ConflictProblem
+#### UnauthorizedProblem
 
 ```php
-use Phpro\ApiProblem\Http\ConflictProblem;
-new ConflictProblem('Duplicated key for book with ID 20.');
+use Phpro\ApiProblem\Http\UnauthorizedProblem;
+
+new UnauthorizedProblem('You are not authorized to access X.');
 ```
 
 ```json
 {
-    "status": 409,
+    "status": 401,
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-    "title": "Conflict",
-    "detail": "Duplicated key for book with ID 20."
+    "title": "Unauthorized",
+    "detail": "You are not authenticated. Please login."
 }
 ````
 
-#### NotModifiedProblem
+#### ForbiddenProblem
 
 ```php
-use Phpro\ApiProblem\Http\NotModifiedProblem;
+use Phpro\ApiProblem\Http\ForbiddenProblem;
 
-new NotModifiedProblem('Nothing has changed!.');
+new ForbiddenProblem('Not authorized to access gold.');
 ```
 
 ```json
 {
-    "status": 304,
+  "status": 403,
+  "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+  "title": "Forbidden",
+  "detail": "Not authorized to access gold."
+}
+````
+
+#### NotFoundProblem
+
+```php
+use Phpro\ApiProblem\Http\NotFoundProblem;
+
+new NotFoundProblem('The book with ID 20 could not be found.');
+```
+
+```json
+{
+    "status": 404,
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
-    "title": "Not Modified",
-    "detail": "Nothing has changed!"
+    "title": "Not found",
+    "detail": "The book with ID 20 could not be found."
 }
 ````
 
@@ -262,6 +231,22 @@ new MethodNotAllowedProblem('Only POST and GET allowed.');
     "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
     "title": "Method Not Allowed",
     "detail": "Only POST and GET allowed."
+}
+````
+
+#### ConflictProblem
+
+```php
+use Phpro\ApiProblem\Http\ConflictProblem;
+new ConflictProblem('Duplicated key for book with ID 20.');
+```
+
+```json
+{
+    "status": 409,
+    "type": "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+    "title": "Conflict",
+    "detail": "Duplicated key for book with ID 20."
 }
 ````
 

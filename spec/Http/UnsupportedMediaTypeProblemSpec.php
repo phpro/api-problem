@@ -34,4 +34,32 @@ class UnsupportedMediaTypeProblemSpec extends ObjectBehavior
             'detail' => 'unsupported media type',
         ]);
     }
+
+    public function it_should_be_a_media_type_with_allowed_content_encodings(): void
+    {
+        $allowedEncodings = ['gzip', 'identity'];
+        $currentEncoding = ['compress', 'none'];
+
+        $this->beConstructedThrough('invalidContentEncoding', [$allowedEncodings, $currentEncoding]);
+        $this->toArray()->shouldBe([
+            'status' => 415,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(415),
+            'detail' => 'compress and none not allowed. Should be: gzip or identity',
+        ]);
+    }
+
+    public function it_should_be_a_media_type_with_allowed_content_types(): void
+    {
+        $allowedEncodings = ['text/html', 'multipart/form-data'];
+        $currentEncoding = 'application/json';
+
+        $this->beConstructedThrough('invalidContentType', [$allowedEncodings, $currentEncoding]);
+        $this->toArray()->shouldBe([
+            'status' => 415,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(415),
+            'detail' => 'application/json not allowed. Should be: text/html or multipart/form-data',
+        ]);
+    }
 }
