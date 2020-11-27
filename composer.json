@@ -3,9 +3,9 @@
     "description": "RFC7807 Problem details implementation",
     "type": "library",
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.12",
-        "phpro/grumphp": "^0.17",
-        "phpspec/phpspec": "^6.0",
+        "friendsofphp/php-cs-fixer": "^2.16.7",
+        "phpro/grumphp-shim": "^1.2",
+        "phpspec/phpspec": "^6.3",
         "symfony/validator": "^4.4",
         "sebastian/comparator": "^1.2.4"
     },
@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^7.2"
+        "php": "^7.3 || ^8.0"
     },
     "config": {
         "sort-packages": true
