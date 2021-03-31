@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phpro\ApiProblem\Http;
 
 use Phpro\ApiProblem\DebuggableApiProblemInterface;
+use Phpro\ApiProblem\PublicExceptionInterface;
 use Throwable;
 
 class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblemInterface
@@ -22,8 +23,13 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
             ? $exceptionCode
             : 500;
 
+        $detail = 'Internal error';
+        if ($exception instanceof PublicExceptionInterface) {
+            $detail = $exception->getMessage() ?: \get_class($exception);
+        }
+
         parent::__construct($statusCode, [
-            'detail' => $exception->getMessage() ?: \get_class($exception),
+            'detail' => $detail,
         ]);
     }
 
