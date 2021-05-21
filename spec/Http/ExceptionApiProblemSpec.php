@@ -129,4 +129,19 @@ class ExceptionApiProblemSpec extends ObjectBehavior
             'detail' => Exception::class,
         ]);
     }
+
+    public function it_should_deal_with_string_exception_codes(): void
+    {
+        $exception = new class($message = 'hell no') extends Exception {
+            protected $code = 'nope';
+        };
+        $this->beConstructedWith($exception);
+
+        $this->toArray()->shouldBe([
+            'status' => 500,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(500),
+            'detail' => $message,
+        ]);
+    }
 }
