@@ -18,7 +18,7 @@ class ExceptionApiProblem extends HttpApiProblem implements DebuggableApiProblem
     {
         $this->exception = $exception;
         $exceptionCode = $exception->getCode();
-        $statusCode = $exceptionCode >= 400 && $exceptionCode <= 599
+        $statusCode = is_int($exception) && $exceptionCode >= 400 && $exceptionCode <= 599
             ? $exceptionCode
             : 500;
 
