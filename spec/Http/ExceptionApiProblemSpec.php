@@ -144,4 +144,17 @@ class ExceptionApiProblemSpec extends ObjectBehavior
             'detail' => $message,
         ]);
     }
+
+    public function it_should_use_code_as_status_code_when_valid_http_status_code_error(): void
+    {
+        $message = 'an honest error';
+        $this->beConstructedWith(new \InvalidArgumentException($message, 400));
+
+        $this->toArray()->shouldBe([
+            'status' => 400,
+            'type' => HttpApiProblem::TYPE_HTTP_RFC,
+            'title' => HttpApiProblem::getTitleForStatusCode(400),
+            'detail' => $message,
+        ]);
+    }
 }
