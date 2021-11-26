@@ -3,11 +3,11 @@
     "description": "RFC7807 Problem details implementation",
     "type": "library",
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16.7",
-        "phpro/grumphp-shim": "^1.2",
-        "phpspec/phpspec": "^6.3",
-        "symfony/validator": "^4.4",
-        "sebastian/comparator": "^1.2.4"
+        "friendsofphp/php-cs-fixer": "^3.3",
+        "phpro/grumphp-shim": "^1.6",
+        "phpspec/phpspec": "^7.0",
+        "symfony/validator": "^5.3 || ^6.0",
+        "sebastian/comparator": "^4.0"
     },
     "license": "MIT",
     "authors": [
@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0"
+        "php": "^8.0"
     },
     "config": {
         "sort-packages": true

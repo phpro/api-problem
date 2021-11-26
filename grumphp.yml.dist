@@ -1,7 +1,7 @@
 grumphp:
     tasks:
       phpcsfixer2:
-        config: ".php_cs.dist"
+        config: ".php-cs-fixer.dist.php"
         config_contains_finder: true
       phpspec:
         format: dot
