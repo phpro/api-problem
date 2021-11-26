@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Phpro\ApiProblem\Exception;
 
+use Exception;
 use Phpro\ApiProblem\ApiProblemInterface;
 
-class ApiProblemException extends \Exception
+class ApiProblemException extends Exception
 {
     /**
      * @var ApiProblemInterface

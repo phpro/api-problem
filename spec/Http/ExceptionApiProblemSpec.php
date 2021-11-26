@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace spec\Phpro\ApiProblem\Http;
 
 use Exception;
+use InvalidArgumentException;
 use Phpro\ApiProblem\DebuggableApiProblemInterface;
 use Phpro\ApiProblem\Http\ExceptionApiProblem;
 use Phpro\ApiProblem\Http\HttpApiProblem;
@@ -148,7 +149,7 @@ class ExceptionApiProblemSpec extends ObjectBehavior
     public function it_should_use_code_as_status_code_when_valid_http_status_code_error(): void
     {
         $message = 'an honest error';
-        $this->beConstructedWith(new \InvalidArgumentException($message, 400));
+        $this->beConstructedWith(new InvalidArgumentException($message, 400));
 
         $this->toArray()->shouldBe([
             'status' => 400,

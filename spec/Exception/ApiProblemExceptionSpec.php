@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace spec\Phpro\ApiProblem\Exception;
 
+use Exception;
 use Phpro\ApiProblem\ApiProblemInterface;
 use Phpro\ApiProblem\Exception\ApiProblemException;
 use PhpSpec\ObjectBehavior;
@@ -23,7 +24,7 @@ class ApiProblemExceptionSpec extends ObjectBehavior
 
     public function it_is_an_excpetion(): void
     {
-        $this->shouldHaveType(\Exception::class);
+        $this->shouldHaveType(Exception::class);
     }
 
     public function it_contains_an_api_problem(ApiProblemInterface $apiProblem): void
