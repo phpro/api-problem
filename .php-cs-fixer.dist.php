@@ -1,8 +1,8 @@
 <?php
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setFinder(
-        \Symfony\Component\Finder\Finder::create()
+        PhpCsFixer\Finder::create()
             ->in([
                 __DIR__ . '/src',
                 __DIR__ . '/spec',
@@ -15,7 +15,7 @@ return PhpCsFixer\Config::create()
         'array_indentation' => true,
         'array_syntax' => ['syntax' => 'short'],
         'backtick_to_shell_exec' => true,
-        'blank_line_before_statement' => true,
+        'blank_line_before_statement' => ['statements' => ['return']],
         'class_keyword_remove' => false,
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
@@ -30,13 +30,13 @@ return PhpCsFixer\Config::create()
         'escape_implicit_backslashes' => true,
         'explicit_indirect_variable' => true,
         'explicit_string_variable' => true,
-        'final_internal_class' => false,
+        'final_internal_class' => true,
         'fully_qualified_strict_types' => true,
         'general_phpdoc_annotation_remove' => false,
         'header_comment' => false,
         'heredoc_to_nowdoc' => false,
         'linebreak_after_opening_tag' => true,
-        'list_syntax' => true,
+        'list_syntax' => ['syntax' => 'short'],
         'mb_str_functions' => true,
         'method_chaining_indentation' => true,
         'multiline_comment_opening_closing' => true,
@@ -46,7 +46,7 @@ return PhpCsFixer\Config::create()
         'no_blank_lines_before_namespace' => false,
         'no_null_property_initialization' => true,
         'no_php4_constructor' => true,
-        'no_short_echo_tag' => false,
+        'echo_tag_syntax' => ['format'=> 'long'],
         'no_superfluous_elseif' => true,
         'no_unreachable_default_argument_value' => true,
         'no_useless_else' => true,
@@ -60,16 +60,17 @@ return PhpCsFixer\Config::create()
         'php_unit_mock' => false,
         'php_unit_namespaced' => false,
         'php_unit_no_expectation_annotation' => false,
-        'php_unit_ordered_covers' => true,
+        'phpdoc_order_by_value' => ['annotations' => ['covers']],
         'php_unit_set_up_tear_down_visibility' => true,
         'php_unit_strict' => false,
         'php_unit_test_annotation' => false,
         'php_unit_test_class_requires_covers' => false,
+        'php_unit_method_casing' => ['case' => 'snake_case'],
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_order' => true,
         'phpdoc_types_order' => ['null_adjustment' => 'always_last'],
         'pow_to_exponentiation' => true,
-        'psr0' => true,
+        'psr_autoloading' => ['dir' => 'src'],
         'random_api_migration' => false,
         'simplified_null_return' => true,
         'static_lambda' => false,
@@ -79,5 +80,13 @@ return PhpCsFixer\Config::create()
         'ternary_to_null_coalescing' => true,
         'void_return' => true,
         'yoda_style' => true,
+        'single_line_throw' => false,
+        'phpdoc_align' => ['align' => 'left'],
+        'phpdoc_to_comment' => false,
+        'global_namespace_import' => [
+            'import_classes' => true,
+            'import_constants' => true,
+            'import_functions' => true,
+        ],
     ])
 ;

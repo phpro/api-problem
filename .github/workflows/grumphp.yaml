@@ -7,7 +7,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: [ubuntu-latest]
-                php-versions: ['7.3', '7.4', '8.0']
+                php-versions: ['8.0', '8.1']
                 composer-options: ['', '--prefer-lowest']
             fail-fast: false
         name: PHP ${{ matrix.php-versions }} @ ${{ matrix.operating-system }} with ${{ matrix.composer-options }}
@@ -34,14 +34,7 @@ jobs:
                   path: ${{ steps.composercache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
                   restore-keys: ${{ runner.os }}-composer-
-            - name: Install dependencies <PHP8
-              if: matrix.php-versions != '8.0'
-              run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }}
-            #
-            # Currently php-cs-fixer is nog PHP 8 compatible yet!
-            #
-            - name: Install dependencies PHP8
-              if: matrix.php-versions == '8.0'
+            - name: Install dependencies
               run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }} --ignore-platform-reqs
             - name: Set git variables
               run: |
@@ -49,5 +42,6 @@ jobs:
                   git config --global user.name "Your Name"
             - name: Run the tests
               run: php vendor/bin/grumphp run --no-interaction
+              continue-on-error: ${{ matrix.php-versions == '8.1' && matrix.composer-options == '--prefer-lowest' }}
               env:
-                  PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.php-versions == '8.0'}}
+                  PHP_CS_FIXER_IGNORE_ENV: 1
