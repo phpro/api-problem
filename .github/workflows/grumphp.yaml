@@ -7,7 +7,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: [ubuntu-latest]
-                php-versions: ['8.0', '8.1']
+                php-versions: ['8.0', '8.1', '8.2']
                 composer-options: ['', '--prefer-lowest']
             fail-fast: false
         name: PHP ${{ matrix.php-versions }} @ ${{ matrix.operating-system }} with ${{ matrix.composer-options }}
@@ -35,7 +35,7 @@ jobs:
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
                   restore-keys: ${{ runner.os }}-composer-
             - name: Install dependencies
-              run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }} --ignore-platform-reqs
+              run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }} --ignore-platform-req=php+
             - name: Set git variables
               run: |
                   git config --global user.email "you@example.com"

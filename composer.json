@@ -3,10 +3,10 @@
     "description": "RFC7807 Problem details implementation",
     "type": "library",
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.3",
-        "phpro/grumphp-shim": "^1.6",
-        "phpspec/phpspec": "^7.0",
-        "symfony/validator": "^5.3 || ^6.0",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "phpro/grumphp-shim": "^1.14",
+        "phpspec/phpspec": "^7.2",
+        "symfony/validator": "^5.4 || ^6.0",
         "sebastian/comparator": "^4.0"
     },
     "license": "MIT",
@@ -20,7 +20,10 @@
         "php": "^8.0"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     },
     "autoload": {
         "psr-4": {

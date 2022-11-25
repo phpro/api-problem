@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phpro\ApiProblem\Http;
 
 use function get_class;
+
 use Phpro\ApiProblem\DebuggableApiProblemInterface;
 use Throwable;
 
