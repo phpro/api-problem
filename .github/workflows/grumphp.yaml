@@ -7,7 +7,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: [ubuntu-latest]
-                php-versions: ['8.1', '8.2', '8.3']
+                php-versions: ['8.1', '8.2', '8.3', '8.4']
                 composer-options: ['', '--prefer-lowest']
             fail-fast: false
         name: PHP ${{ matrix.php-versions }} @ ${{ matrix.operating-system }} with ${{ matrix.composer-options }}
@@ -20,6 +20,11 @@ jobs:
                   php-version: ${{ matrix.php-versions }}
                   tools: 'composer:v2'
                   extensions: pcov, mbstring, posix
+            - name: Set env vars for latest PHP version
+              if: matrix.php-versions == '8.4'
+              run: |
+                export COMPOSER_IGNORE_PLATFORM_REQ=php+
+                export BOX_REQUIREMENT_CHECKER=0
             - name: Check Versions
               run: |
                   php -v
