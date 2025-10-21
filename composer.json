@@ -6,7 +6,6 @@
         "php-cs-fixer/shim": "^3.88",
         "phpro/grumphp-shim": "^2.17",
         "phpspec/phpspec": "^7.2",
-        "vimeo/psalm": "^6.13",
         "symfony/validator": "^5.4 || ^6.0 || ^7.0",
         "sebastian/comparator": "^4.0"
     },
