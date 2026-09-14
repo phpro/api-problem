@@ -149,6 +149,12 @@ new ValidationApiProblem(new ConstraintViolationList([
 }
 ````
 
+The status code defaults to 400 and can be overridden:
+
+```php
+new ValidationApiProblem($violationList, 422);
+```
+
 #### BadRequestProblem
 
 ```php

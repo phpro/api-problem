@@ -30,6 +30,12 @@ class ValidationApiProblemSpec extends ObjectBehavior
         $this->shouldHaveType(HttpApiProblem::class);
     }
 
+    public function it_can_be_constructed_with_a_custom_status_code(): void
+    {
+        $this->beConstructedWith(new ConstraintViolationList([]), 422);
+        $this->toArray()->shouldHaveKeyWithValue('status', 422);
+    }
+
     public function it_can_parse_to_array(): void
     {
         $this->toArray()->shouldBe([

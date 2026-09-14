@@ -10,10 +10,10 @@ class ValidationApiProblem extends HttpApiProblem
 {
     public const TYPE_SYMFONY_VIOLATIONS = 'https://symfony.com/errors/validation';
 
-    public function __construct(ConstraintViolationListInterface $violationList)
+    public function __construct(ConstraintViolationListInterface $violationList, int $statusCode = 400)
     {
         parent::__construct(
-            400,
+            $statusCode,
             [
                 'type' => self::TYPE_SYMFONY_VIOLATIONS,
                 'title' => 'Validation Failed',
